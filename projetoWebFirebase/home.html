@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="icon" type="image/png" href="images/FaviconSistema.png">
+  <link rel="stylesheet" href="css/style.css">
+  <title>Menu inicial</title>
+</head>
+
+<body onload="verificaLogado();obtemDados('produtos')">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="home.html">Produtos</a>
+          </li>
+        </ul>
+      </div>
+      <div class="text-right">
+        <ul class="navbar-nav ms-auto flex-nowrap">
+          <li class="nav-item">
+            <button class="btn  btn-block btn-danger" onclick="logoutFirebase()">Logout</button>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <div class="container-fluid p-2 bg-secondary text-dark text-center">
+    <h1>Inventário - Estoque de produtos</h1>
+  </div>
+  <div class="corpo">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-4">
+          <h1 class="text-white"> <img src="images/cadastro.png" alt="listagem de produtos" width="50px" /> Cadastro de
+            produtos</h1>
+          <form id="formCadastro">
+            <div class="form-group mt-3">
+              <label for="descricao">Descrição</label>
+              <input type="text" class="form-control" name="descricao" id="descricao" placeholder="Descrição" autofocus>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group mt-3">
+                  <label for="unidade">Unidade</label>
+                  <select class="form-select" name="unidade" id="unidade">
+                    <option>UN</option>
+                    <option>CX</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group mt-3">
+                  <label for="quantidade">Quantidade</label>
+                  <input type="number" class="form-control" name="quantidade" id="quantidade" min="0" step="1"
+                    onkeypress="return numerosInteiros(event)">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group mt-3">
+                  <label for="data">Data de validade</label>
+                  <input type="date" class="form-control " name="data" id="data">
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group mt-3">
+                  <label for="valor">Valor</label>
+                  <input type="number" class="form-control" name="valor" id="valor" min="0" step="0.01">
+                </div>
+              </div>
+            </div>
+            <div class="form-group my-3">
+              <label for="categoria">Categoria</label><br>
+              <input type="radio" class="btn-check" name="categoria" id="congelados" value="Congelados">
+              <label class="btn btn-outline-light" for="congelados">Congelados</label>
+              <input type="radio" class="btn-check" name="categoria" id="farinacios" value="Farinácios">
+              <label class="btn btn-outline-light" for="farinacios">Farinácios</label>
+              <input type="radio" class="btn-check" name="categoria" id="pereciveis" value="Perecíveis">
+              <label class="btn btn-outline-light" for="pereciveis">Perecíveis</label>
+              <input type="radio" class="btn-check" name="categoria" id="bebidas" value="Bebidas">
+              <label class="btn btn-outline-light" for="bebidas">Bebidas</label>
+              <input type="radio" class="btn-check" name="categoria" id="laticinios" value="Laticínios">
+              <label class="btn btn-outline-light" for="laticinios">Laticínios</label>
+            </div>
+            <div class="form-group">
+              <input type="hidden" class="form-control" name="id" id="id">
+            </div>
+            <button class="btn btn-block btn-success my-4" onclick="salvar(event, 'produtos')">💾 Salvar</button>
+            <button type="reset" class="btn btn-block btn-info">🔃 Limpar</button>
+          </form>
+        </div>
+        <div class="col-md-7">
+          <h1 class="text-light"> <img src="images/listagem.png" alt="listagem de produtos" width="50px" /> </a>Listagem
+            de produtos</h1>
+          <table id="tabelaDados" class="table table-bordered table-striped">
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://www.gstatic.com/firebasejs/8.2.4/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.2.4/firebase-analytics.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.2.4/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.2.4/firebase-database.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/firebase.js"></script>
+  <script src="js/authentication.js"></script>
+  <script src="js/dados.js"></script>
+  <script src="js/function.js"></script>
+</body>
+
+</html>
